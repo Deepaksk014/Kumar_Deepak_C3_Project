@@ -3,7 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
-
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -75,4 +76,26 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void calculate_price_when_no_item_is_selected(){
+        ArrayList <String> itemlist =new ArrayList<>();
+        assertEquals(0,restaurant.calculatePriceByItem(itemlist));
+    }
+
+    @Test
+     public void calculate_price_when_one_item_is_selected(){
+        ArrayList <String> itemlist =new ArrayList<>();
+        itemlist.add("Sweet corn soup");
+        assertEquals(119,restaurant.calculatePriceByItem(itemlist));
+    }
+
+    @Test
+    public void  calculate_price_when_two_item_is_selected(){
+        ArrayList <String> itemlist =new ArrayList<>();
+        itemlist.add("Sweet corn soup");
+        itemlist.add("Vegetable lasagne");
+        assertEquals(388,restaurant.calculatePriceByItem(itemlist));
+
+    }
+
 }
